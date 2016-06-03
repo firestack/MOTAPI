@@ -1,0 +1,11 @@
+{
+	"SSL":{
+		"SSLModule":"ssl", 	//Can Be Either ssl or OpenSSL
+		"cert_file":"",		// Should be a location on the FileSystem
+		"private_key":"",	
+	},
+	"sql":{
+		"SQLType":"SQLite", 			//Dev in SQLite, production in PGSQL
+		"URL": "sqlite:///:memory",    	//SQL URL ()
+	}
+}

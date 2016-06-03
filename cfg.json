@@ -1,0 +1,11 @@
+{
+	"SSL":{
+		"SSLModule":"ssl", 	
+		"cert_file":"",		
+		"private_key":""
+	},
+	"sql":{
+		"SQLType":"SQLite", 
+		"URL": "sqlite:///:memory"
+	}
+}
