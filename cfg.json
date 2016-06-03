@@ -5,7 +5,7 @@
 		"private_key":""
 	},
 	"sql":{
-		"SQLType":"SQLite", 
-		"URL": "sqlite:///:memory"
+		"SQLType":"PGSQL", 
+		"URL": "postgres://user:password@url.url:8080[port]/database"
 	}
 }

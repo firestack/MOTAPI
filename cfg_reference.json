@@ -6,6 +6,6 @@
 	},
 	"sql":{
 		"SQLType":"SQLite", 			//Dev in SQLite, production in PGSQL
-		"URL": "sqlite:///:memory",    	//SQL URL ()
+		"URL": "postgres://user:password@url.url:8080[port]/database"    	//SQL URL ()
 	}
 }
