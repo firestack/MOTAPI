@@ -2,6 +2,7 @@
 
 from flask import Flask, jsonify, abort, make_response, request
 from flask_restful import Resource, Api
+import sqlalchemy
 
 app = Flask(__name__)
 api = Api(app)
@@ -15,6 +16,10 @@ import Endpoints
 API_VERSION = str(Endpoints.version)
 API_ROOT = "/api/" + API_VERSION + "/"
 USERS_ENDPOINT = API_ROOT + "users/<int:userID>/"
+
+
+from Endpoints import MOTdb
+
 
 # Endpoints
 from Endpoints.userinfo import UserInfo
@@ -39,7 +44,7 @@ if __name__ == '__main__':
 	parser.add_argument("--debug", 				default=False, 			help="Use Debug Mode", 			action="store_true"	)
 	parser.add_argument("--threaded",			default=False, 			help="Experimental Threaded",   action="store_true"	)
 	parser.add_argument("--host", 				default="0.0.0.0", 		help="Specify Host IP",			type=str			)
-	parser.add_argument("--port", 				default=80, 			help="Specify Host Port",		type=int			)
+	parser.add_argument("--port", 				default=8443, 			help="Specify Host Port",		type=int			)
 	parser.add_argument("--nossl", dest="ssl", 	default=True, 			help="Should Use SSL/HTTPS", 	action="store_false")
 	parser.add_argument("--cfgfile",			default="cfg.json", 	help="Specify the configuration file", type=str 	)
 
@@ -48,6 +53,8 @@ if __name__ == '__main__':
 	cfg = {}
 	with open(args.cfgfile) as cfgin:
 		cfg = json.load(cfgin)
+
+	MOTdb.Start(cfg["sql"]["URL"])
 
 	app_args = {"debug":args.debug, "host":args.host, "port":args.port, "threaded":args.threaded} 
 

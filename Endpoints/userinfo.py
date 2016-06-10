@@ -1,9 +1,12 @@
 from flask import jsonify, abort, make_response, request
 from flask_restful import Resource
 
+
+from . import MOTdb
+
 class UserInfo(Resource):
 	def get(self, userID):
-			args = request.args		
+			args = request.args
 
 			return make_response(
 				jsonify(
