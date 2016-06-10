@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
 	app_args = {"debug":args.debug, "host":args.host, "port":args.port, "threaded":args.threaded} 
 
-	if args.ssl:
+	if args.ssl and cfg["SSL"].get("DISABLE", False):
 
 		if cfg["SSL"]["SSLModule"] == "OpenSSL":
 			from OpenSSL import SSL
