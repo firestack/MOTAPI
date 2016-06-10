@@ -46,7 +46,7 @@ if __name__ == '__main__':
 	parser.add_argument("--host", 				default="0.0.0.0", 		help="Specify Host IP",			type=str			)
 	parser.add_argument("--port", 				default=8443, 			help="Specify Host Port",		type=int			)
 	parser.add_argument("--nossl", dest="ssl", 	default=True, 			help="Should Use SSL/HTTPS", 	action="store_false")
-	parser.add_argument("--cfgfile",			default="cfg.json", 	help="Specify the configuration file", type=str 	)
+	parser.add_argument("--cfgfile",			default="config/cfg.json", 	help="Specify the configuration file", type=str 	)
 
 	args = parser.parse_args()
 
