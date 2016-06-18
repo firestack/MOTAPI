@@ -7,10 +7,16 @@ import sqlalchemy
 app = Flask(__name__)
 api = Api(app)
 
-
-# @app.errorhandler(Exception)
-# def all_exception_handler(error):
-#    return make_response(jsonify({'message': "Unknown Error"}), 500)
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  return response
+  
+@app.errorhandler(Exception)
+def all_exception_handler(error):
+   return make_response(jsonify({'message': "Unknown Error"}), 500)
 
 import Endpoints
 API_VERSION = str(Endpoints.version)
