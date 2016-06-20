@@ -20,7 +20,7 @@ class UserInfo(Resource):
 					
 					"banned"	: 110,
 					"timedout"	: 10,
-					"messages"	: 10
+					"messages"	: messageCount.fetchone()[0]
 					}
 				)
 			)	
