@@ -7,12 +7,17 @@ from . import MOTdb
 class UserInfo(Resource):
 	def get(self, userID):
 			args = request.args
-
+			messageCount = MOTdb.con.execute(
+				"""SELECT COUNT(messages)
+				FROM messages 
+				WHERE userid = %s 
+				""",
+				userID
+			)
 			return make_response(
 				jsonify(
 					{
-					"user_id"	: userID,
-					"username"	: str(userID),
+					
 					"banned"	: 110,
 					"timedout"	: 10,
 					"messages"	: 10

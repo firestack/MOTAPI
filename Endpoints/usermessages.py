@@ -51,4 +51,4 @@ class UserMessages(Resource):
 		countOfMessages = MOTdb.con.execute("SELECT COUNT(message) FROM messages WHERE userid = %s", userID).fetchone()[0]
 		motjsonify = lambda data : Response(json.dumps(data, indent=None if request.is_xhr else 2, default=json_serial), mimetype='application/json')
 
-		return make_response(motjsonify({"args":args, "offset":offset, "limit":limit, "messages":messages, "count":countOfMessages}))
+		return make_response(motjsonify({"messages":messages}))
