@@ -91,3 +91,4 @@ ENV/
 # MOT Project
 *private*
 cfg.json
+mot_api*
