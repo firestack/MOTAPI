@@ -37,18 +37,24 @@ class UserMessages(Resource):
 
 		# Make Query
 		messages = MOTdb.con.execute(
-			"""SELECT channel, message, time
+			"""SELECT channel, message, created_at, id
 			FROM messages 
 			WHERE userid = %s 
-			ORDER BY time {order} 
+			ORDER BY created_at {order} 
 			LIMIT %s 
 			OFFSET %s""".format(order=latest),
 			userID, limit, offset
 		)
 		
-		messages = [list(i) for i in messages.fetchall()]
+		# Convert rows to dict
+		messages = [
+			dict(i)
+			for i in messages.fetchall()
+		]
 		
-		countOfMessages = MOTdb.con.execute("SELECT COUNT(message) FROM messages WHERE userid = %s", userID).fetchone()[0]
+		
+		#countOfMessages = MOTdb.con.execute("SELECT COUNT(message) FROM messages WHERE userid = %s", userID).fetchone()[0]
+
 		motjsonify = lambda data : Response(json.dumps(data, indent=None if request.is_xhr else 2, default=json_serial), mimetype='application/json')
 
-		return make_response(motjsonify({"messages":messages}))
+		return motjsonify({"messages":messages})

@@ -1,4 +1,4 @@
-##!flask/bin/python
+#! /usr/bin/python3
 
 from flask import Flask, jsonify, abort, make_response, request
 from flask_restful import Resource, Api
@@ -14,9 +14,9 @@ def after_request(response):
   response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
   return response
   
-@app.errorhandler(Exception)
-def all_exception_handler(error):
-   return make_response(jsonify({'message': "Unknown Error"}), 500)
+# @app.errorhandler(Exception)
+# def all_exception_handler(error):
+#    return make_response(jsonify({'message': "Unknown Error"}), 500)
 
 import Endpoints
 API_VERSION = str(Endpoints.version)
